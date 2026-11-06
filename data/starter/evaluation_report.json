@@ -1,0 +1,202 @@
+{
+ "latest_run_outlook_by_scenario": {
+  "SCN-BASE": {
+   "run_id": "FCAST-2026-10-01-001",
+   "min_position_usd_minor": 1695343460,
+   "min_position_date": "2026-10-05",
+   "entities_breaching_buffer": 0,
+   "breach_entity_days": 0
+  },
+  "SCN-DELAYED": {
+   "run_id": "FCAST-2026-10-01-002",
+   "min_position_usd_minor": 1639950167,
+   "min_position_date": "2026-10-07",
+   "entities_breaching_buffer": 0,
+   "breach_entity_days": 0
+  },
+  "SCN-STRESS": {
+   "run_id": "FCAST-2026-10-01-003",
+   "min_position_usd_minor": 1433035436,
+   "min_position_date": "2026-10-26",
+   "entities_breaching_buffer": 0,
+   "breach_entity_days": 0
+  }
+ },
+ "detection": {
+  "per_issue_type": {
+   "BALANCE_MISMATCH": {
+    "labelled": 2,
+    "detected": 2,
+    "true_positive": 2,
+    "false_positive": 0,
+    "false_negative": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "decision_accuracy": 1.0
+   },
+   "CASH_FLOW_COUNTED_TWICE": {
+    "labelled": 2,
+    "detected": 2,
+    "true_positive": 2,
+    "false_positive": 0,
+    "false_negative": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "decision_accuracy": 1.0
+   },
+   "CURRENCY_MIXED_WITHOUT_CONVERSION": {
+    "labelled": 2,
+    "detected": 2,
+    "true_positive": 2,
+    "false_positive": 0,
+    "false_negative": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "decision_accuracy": 1.0
+   },
+   "FORECAST_USES_ACTUAL_AFTER_CUTOFF": {
+    "labelled": 2,
+    "detected": 2,
+    "true_positive": 2,
+    "false_positive": 0,
+    "false_negative": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "decision_accuracy": 1.0
+   },
+   "FX_RATE_MISSING": {
+    "labelled": 8,
+    "detected": 8,
+    "true_positive": 8,
+    "false_positive": 0,
+    "false_negative": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "decision_accuracy": 1.0
+   }
+  },
+  "overall": {
+   "precision": 1.0,
+   "recall": 1.0
+  },
+  "detected_total": 16
+ },
+ "run_decision_accuracy": 1.0,
+ "forecast_accuracy_wape_by_scenario_and_horizon": {
+  "SCN-BASE|d1-14": {
+   "rows": 98,
+   "wape": 0.0328,
+   "bias_pct": -0.0216
+  },
+  "SCN-BASE|d15-45": {
+   "rows": 188,
+   "wape": 0.0522,
+   "bias_pct": -0.0437
+  },
+  "SCN-BASE|d46-91": {
+   "rows": 290,
+   "wape": 0.1089,
+   "bias_pct": -0.0769
+  },
+  "SCN-DELAYED|d1-14": {
+   "rows": 98,
+   "wape": 0.0343,
+   "bias_pct": 0.028
+  },
+  "SCN-DELAYED|d15-45": {
+   "rows": 188,
+   "wape": 0.0425,
+   "bias_pct": -0.0102
+  },
+  "SCN-DELAYED|d46-91": {
+   "rows": 290,
+   "wape": 0.1076,
+   "bias_pct": -0.0727
+  },
+  "SCN-STRESS|d1-14": {
+   "rows": 98,
+   "wape": 0.1189,
+   "bias_pct": 0.1189
+  },
+  "SCN-STRESS|d15-45": {
+   "rows": 188,
+   "wape": 0.1224,
+   "bias_pct": 0.1136
+  },
+  "SCN-STRESS|d46-91": {
+   "rows": 290,
+   "wape": 0.1041,
+   "bias_pct": 0.0283
+  }
+ },
+ "variance_primary_driver_counts": {
+  "TIMING": 510,
+  "UNSCHEDULED_FLOWS": 948,
+  "FX": 329,
+  "AMOUNT": 84
+ },
+ "breach_alert_quality_by_scenario": {
+  "SCN-BASE": {
+   "TN": 46,
+   "FN": 3,
+   "precision": null,
+   "recall": 0.0
+  },
+  "SCN-DELAYED": {
+   "TN": 46,
+   "FN": 3,
+   "precision": null,
+   "recall": 0.0
+  },
+  "SCN-STRESS": {
+   "TN": 46,
+   "FN": 3,
+   "precision": null,
+   "recall": 0.0
+  }
+ },
+ "variance_explained_pct": 100.0,
+ "coverage": {
+  "accounts_by_currency": {
+   "USD": 12,
+   "EUR": 6,
+   "INR": 4,
+   "GBP": 5,
+   "SGD": 3
+  },
+  "forecast_items_by_currency": {
+   "USD": 264,
+   "GBP": 245,
+   "SGD": 52,
+   "INR": 271,
+   "EUR": 168
+  },
+  "receivable_status": {
+   "PAID": 370,
+   "WRITTEN_OFF": 2,
+   "CANCELLED": 5,
+   "OVERDUE": 10,
+   "PARTIALLY_PAID": 4,
+   "OPEN": 109
+  },
+  "payable_status": {
+   "PAID": 386,
+   "CANCELLED": 2,
+   "OVERDUE": 3,
+   "OPEN": 108,
+   "PARTIALLY_PAID": 1
+  },
+  "runs_by_status": {
+   "APPROVED": 30,
+   "SUPERSEDED": 2
+  },
+  "large_one_off_payables": 18,
+  "delayed_receivables_paid_late": 281,
+  "overdrawn_account_days": 0,
+  "account_days_fx_status": {
+   "OK": 7539,
+   "STALE_CARRY": 23,
+   "MISSING": 8
+  }
+ }
+}

@@ -1,0 +1,19 @@
+assumption_id,scenario_id,parameter_name,parameter_value,unit,rationale
+ASM-0001,SCN-BASE,receipt_delay_days,0.0000,days,customer payment delay assumption
+ASM-0002,SCN-BASE,payable_acceleration_days,0.0000,days,supplier early-payment pressure
+ASM-0003,SCN-BASE,receivable_haircut_pct,0.0000,fraction,expected credit loss on receipts
+ASM-0004,SCN-BASE,one_off_outflow_multiplier,1.0000,x,cost overrun on large one-off payments
+ASM-0005,SCN-BASE,fx_shock_pct,0.0000,fraction,non-USD depreciation vs USD at plan rate
+ASM-0006,SCN-BASE,overdue_rollover_days,3.0000,days,days after run date at which overdue items clear
+ASM-0007,SCN-DELAYED,receipt_delay_days,10.0000,days,customer payment delay assumption
+ASM-0008,SCN-DELAYED,payable_acceleration_days,0.0000,days,supplier early-payment pressure
+ASM-0009,SCN-DELAYED,receivable_haircut_pct,0.0000,fraction,expected credit loss on receipts
+ASM-0010,SCN-DELAYED,one_off_outflow_multiplier,1.0000,x,cost overrun on large one-off payments
+ASM-0011,SCN-DELAYED,fx_shock_pct,0.0000,fraction,non-USD depreciation vs USD at plan rate
+ASM-0012,SCN-DELAYED,overdue_rollover_days,7.0000,days,days after run date at which overdue items clear
+ASM-0013,SCN-STRESS,receipt_delay_days,21.0000,days,customer payment delay assumption
+ASM-0014,SCN-STRESS,payable_acceleration_days,5.0000,days,supplier early-payment pressure
+ASM-0015,SCN-STRESS,receivable_haircut_pct,0.1000,fraction,expected credit loss on receipts
+ASM-0016,SCN-STRESS,one_off_outflow_multiplier,1.2500,x,cost overrun on large one-off payments
+ASM-0017,SCN-STRESS,fx_shock_pct,-0.0800,fraction,non-USD depreciation vs USD at plan rate
+ASM-0018,SCN-STRESS,overdue_rollover_days,14.0000,days,days after run date at which overdue items clear

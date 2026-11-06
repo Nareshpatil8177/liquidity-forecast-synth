@@ -1,0 +1,12 @@
+{
+ "external_data_used": false,
+ "statement": "All records are synthetic, produced by the seeded generator in this repository. No personal, confidential or third-party licensed data was accessed or redistributed.",
+ "schema_inspiration_only": [
+  "ISO 4217 currency codes",
+  "ISO 3166-1 alpha-2 country codes",
+  "generic treasury cash-forecasting practice (receipts/payments/scenarios)"
+ ],
+ "fx_start_levels": "Approximate round numbers chosen by the author; not downloaded or copied from any dataset.",
+ "license_of_generated_data": "CC0-1.0",
+ "license_of_code": "MIT"
+}

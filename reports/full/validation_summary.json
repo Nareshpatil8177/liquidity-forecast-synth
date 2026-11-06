@@ -1,0 +1,249 @@
+{
+ "summary": {
+  "total_checks": 22,
+  "passed": 17,
+  "passed_with_expected_exceptions": 5,
+  "failed": 0,
+  "ground_truth_rows": 106,
+  "row_counts": {
+   "legal_entity": 30,
+   "bank_account": 150,
+   "ledger_entry": 100000,
+   "receivable": 10000,
+   "payable": 10000,
+   "cash_flow_forecast": 20000,
+   "currency_rate": 1359,
+   "liquidity_scenario": 3,
+   "scenario_assumption": 18,
+   "forecast_run": 32,
+   "forecast_run_entity": 960,
+   "forecast_run_item": 83331,
+   "daily_cash_position": 40330,
+   "forecast_daily_position": 84812,
+   "forecast_vs_actual": 9899,
+   "state_event": 91549
+  }
+ },
+ "checks": [
+  {
+   "id": "V01",
+   "name": "primary-key and composite-uniqueness",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V02",
+   "name": "foreign-key integrity (all declared FKs)",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V03",
+   "name": "required fields populated",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V04",
+   "name": "allowed enum values",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V05",
+   "name": "ID format / zero-padding",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V06",
+   "name": "date ordering / effective-date rules",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V07",
+   "name": "parent/child attribute consistency (entity, currency, direction)",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V08",
+   "name": "ledger sign + running-balance arithmetic",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V09",
+   "name": "daily balances reconcile (open+in-out=close, chain, final=ledger)",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V10",
+   "name": "opening + ledger == bank closing balance",
+   "status": "PASS_EXPECTED_EXCEPTIONS",
+   "violations_found": 10,
+   "labelled_expected": 10,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V11",
+   "name": "ledger currency == account currency (no mixed currency)",
+   "status": "PASS_EXPECTED_EXCEPTIONS",
+   "violations_found": 25,
+   "labelled_expected": 25,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V12",
+   "name": "FX rate present for every currency/day",
+   "status": "PASS_EXPECTED_EXCEPTIONS",
+   "violations_found": 16,
+   "labelled_expected": 16,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V13",
+   "name": "receivable/payable/CF amounts & statuses reconcile with ledger",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V14",
+   "name": "lifecycle transitions, event chain, final state == current status",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V15",
+   "name": "duplicate forecast lines per (run, item)",
+   "status": "PASS_EXPECTED_EXCEPTIONS",
+   "violations_found": 40,
+   "labelled_expected": 40,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V16",
+   "name": "duplicate settlement postings (cf_id, date, amount)",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V17",
+   "name": "no actuals used after run cutoff",
+   "status": "PASS_EXPECTED_EXCEPTIONS",
+   "violations_found": 15,
+   "labelled_expected": 15,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V18",
+   "name": "scenario table == scenario_assumption rows == documented config",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V19",
+   "name": "scenarios differ only by documented assumptions (lines recomputed independently)",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V20",
+   "name": "run aggregates / checksum recompute from lines and projections",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V21",
+   "name": "actual-vs-forecast variance fully explained by drivers (|residual|<=5 minor)",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  },
+  {
+   "id": "V22",
+   "name": "ground truth refers to real rows & is not leaked into input columns",
+   "status": "PASS",
+   "violations_found": 0,
+   "labelled_expected": 0,
+   "unlabelled_violations": 0,
+   "labelled_not_detected": 0,
+   "sample": []
+  }
+ ]
+}

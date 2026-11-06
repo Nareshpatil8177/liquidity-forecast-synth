@@ -1,0 +1,2605 @@
+{
+ "legal_entity": {
+  "primary_key": [
+   "entity_id"
+  ],
+  "id_pattern": "^ENT-\\d{6}$",
+  "description": "Legal entities of the group (master data, parent of everything).",
+  "cardinality": "1:N bank_account; 1:N receivable/payable/cash_flow_forecast; self-reference N:1 parent (optional); N:M forecast_run via forecast_run_entity",
+  "lifecycle": "ACTIVE -> DORMANT|CLOSED ; DORMANT -> ACTIVE|CLOSED",
+  "unique_together": [],
+  "fields": [
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": "ENT-###### zero padded; immutable"
+   },
+   {
+    "name": "legal_name",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": "synthetic name; no real companies"
+   },
+   {
+    "name": "entity_type",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "HOLDING",
+     "OPERATING",
+     "SPV",
+     "TREASURY_CENTRE"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "country_code",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "US",
+     "DE",
+     "FR",
+     "NL",
+     "GB",
+     "IN",
+     "SG"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "ISO 3166-1 alpha-2"
+   },
+   {
+    "name": "functional_currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD",
+     "EUR",
+     "GBP",
+     "INR",
+     "SGD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "ISO 4217; drives default account currency"
+   },
+   {
+    "name": "parent_entity_id",
+    "type": "string",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": "optional; parent id < own id (acyclic); NULL for holding"
+   },
+   {
+    "name": "size_tier",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "SMALL",
+     "MEDIUM",
+     "LARGE"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived from relative transaction scale"
+   },
+   {
+    "name": "status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "ACTIVE",
+     "DORMANT",
+     "CLOSED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "current lifecycle state; history in state_event"
+   },
+   {
+    "name": "status_since",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= effective_from"
+   },
+   {
+    "name": "incorporation_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "effective_from",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= incorporation_date"
+   },
+   {
+    "name": "effective_to",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "required iff status=CLOSED; > effective_from"
+   },
+   {
+    "name": "min_liquidity_buffer_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= 0; derived = 2.0 x mean monthly payables (USD-equivalent at opening FX)"
+   }
+  ]
+ },
+ "bank_account": {
+  "primary_key": [
+   "account_id"
+  ],
+  "id_pattern": "^BANKACC-ENT-\\d{6}-\\d{3}$",
+  "description": "Bank accounts held by legal entities.",
+  "cardinality": "N:1 legal_entity; 1:N ledger_entry; 1:N daily_cash_position",
+  "lifecycle": "OPEN <-> FROZEN ; OPEN|FROZEN -> CLOSED",
+  "unique_together": [],
+  "fields": [
+   {
+    "name": "account_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": "BANKACC-<entity-id>-### ; immutable"
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": ""
+   },
+   {
+    "name": "bank_name",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "synthetic bank name"
+   },
+   {
+    "name": "account_type",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "OPERATING",
+     "COLLECTION",
+     "PAYROLL",
+     "RESERVE",
+     "FX"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD",
+     "EUR",
+     "GBP",
+     "INR",
+     "SGD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "ISO 4217; every ledger entry on the account must use this currency"
+   },
+   {
+    "name": "status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "OPEN",
+     "FROZEN",
+     "CLOSED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "current state; history in state_event"
+   },
+   {
+    "name": "opened_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "<= opening_balance_date; >= entity.effective_from"
+   },
+   {
+    "name": "closed_date",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "required iff status=CLOSED; >= opened_date"
+   },
+   {
+    "name": "opening_balance_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= 2025-12-31 (end-of-day balance)"
+   },
+   {
+    "name": "opening_balance_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= 0"
+   },
+   {
+    "name": "overdraft_limit_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= 0"
+   },
+   {
+    "name": "statement_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "bank statement as-of date = closed_date or data cutoff"
+   },
+   {
+    "name": "statement_closing_balance_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "bank-reported closing balance; must equal opening + sum(ledger) unless labelled BALANCE_MISMATCH"
+   }
+  ]
+ },
+ "ledger_entry": {
+  "primary_key": [
+   "ledger_id"
+  ],
+  "id_pattern": "^LED-2026-\\d{8}$",
+  "description": "Posted bank ledger movements (actuals).",
+  "cardinality": "N:1 bank_account; N:1 cash_flow_forecast (optional, 0..N settlements per item)",
+  "lifecycle": "",
+  "unique_together": [],
+  "fields": [
+   {
+    "name": "ledger_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": "LED-2026-######## ; chronological order"
+   },
+   {
+    "name": "account_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "bank_account.account_id",
+    "rule": ""
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": "must equal bank_account.entity_id"
+   },
+   {
+    "name": "entry_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= 2026-01-01 and <= data cutoff; business day"
+   },
+   {
+    "name": "currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD",
+     "EUR",
+     "GBP",
+     "INR",
+     "SGD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "must equal bank_account.currency (else MIXED_CURRENCY anomaly)"
+   },
+   {
+    "name": "direction",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "CREDIT",
+     "DEBIT"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "> 0"
+   },
+   {
+    "name": "signed_amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "+amount for CREDIT, -amount for DEBIT"
+   },
+   {
+    "name": "balance_after_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "running balance = opening + cumulative signed"
+   },
+   {
+    "name": "entry_type",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "CUSTOMER_RECEIPT",
+     "SUPPLIER_PAYMENT",
+     "PAYROLL",
+     "TAX_PAYMENT",
+     "LOAN_REPAYMENT",
+     "CAPEX_PAYMENT",
+     "CARD_SETTLEMENT",
+     "MISC_RECEIPT",
+     "INTEREST_CREDIT",
+     "BANK_FEE",
+     "MISC_PAYMENT",
+     "ACCOUNT_CLOSURE_SWEEP"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "cf_id",
+    "type": "string",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "cash_flow_forecast.cf_id",
+    "rule": "set for settlements of scheduled items"
+   },
+   {
+    "name": "source_ref_id",
+    "type": "string",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "RCV-/PAY- id of the settled document (consistent with cf_id)"
+   },
+   {
+    "name": "counterparty_ref",
+    "type": "string",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "pseudonymous reference"
+   },
+   {
+    "name": "description",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "posting_status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "POSTED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   }
+  ]
+ },
+ "receivable": {
+  "primary_key": [
+   "receivable_id"
+  ],
+  "id_pattern": "^RCV-2026-\\d{6}$",
+  "description": "Scheduled customer invoices (expected cash inflows).",
+  "cardinality": "1:1 cash_flow_forecast (optional); N:1 legal_entity; N:1 bank_account",
+  "lifecycle": "OPEN -> OVERDUE|PARTIALLY_PAID|PAID|CANCELLED|WRITTEN_OFF ; OVERDUE <-> PARTIALLY_PAID ; ... -> PAID|WRITTEN_OFF",
+  "unique_together": [],
+  "fields": [
+   {
+    "name": "receivable_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": ""
+   },
+   {
+    "name": "account_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "bank_account.account_id",
+    "rule": "receiving account; same entity; same currency as invoice"
+   },
+   {
+    "name": "counterparty_ref",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "CUST-####; pseudonymous"
+   },
+   {
+    "name": "counterparty_risk_tier",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "LOW",
+     "MEDIUM",
+     "HIGH"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "drives payment delay / partial / write-off behaviour"
+   },
+   {
+    "name": "invoice_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "due_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= invoice_date + 1; business day"
+   },
+   {
+    "name": "payment_terms_days",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "days",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "due_date - invoice_date"
+   },
+   {
+    "name": "currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD",
+     "EUR",
+     "GBP",
+     "INR",
+     "SGD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "invoice_amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "> 0"
+   },
+   {
+    "name": "settled_amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived = sum of linked ledger credits"
+   },
+   {
+    "name": "outstanding_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived = invoice - settled while OPEN/OVERDUE/PARTIALLY_PAID else 0"
+   },
+   {
+    "name": "last_payment_date",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived from ledger"
+   },
+   {
+    "name": "days_past_due_at_cutoff",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "days",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived; 0 if nothing outstanding"
+   },
+   {
+    "name": "status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "OPEN",
+     "OVERDUE",
+     "PARTIALLY_PAID",
+     "PAID",
+     "WRITTEN_OFF",
+     "CANCELLED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived from state_event chain"
+   },
+   {
+    "name": "terminal_date",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "date PAID/WRITTEN_OFF/CANCELLED reached"
+   },
+   {
+    "name": "status_as_of_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= data cutoff"
+   }
+  ]
+ },
+ "payable": {
+  "primary_key": [
+   "payable_id"
+  ],
+  "id_pattern": "^PAY-2026-\\d{6}$",
+  "description": "Scheduled supplier/payroll/tax/loan/capex payments (expected outflows).",
+  "cardinality": "1:1 cash_flow_forecast (optional); N:1 legal_entity; N:1 bank_account",
+  "lifecycle": "OPEN -> OVERDUE|PARTIALLY_PAID|PAID|CANCELLED ; OVERDUE <-> PARTIALLY_PAID",
+  "unique_together": [],
+  "fields": [
+   {
+    "name": "payable_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": ""
+   },
+   {
+    "name": "account_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "bank_account.account_id",
+    "rule": "paying account; same entity"
+   },
+   {
+    "name": "supplier_ref",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "SUPP-#### / INTERNAL-PAYROLL / TAXAUTH-xx / LENDER-xx"
+   },
+   {
+    "name": "supplier_tier",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "CRITICAL",
+     "STANDARD",
+     "DEFERRABLE"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "category",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "SUPPLIER_PAYMENT",
+     "PAYROLL",
+     "TAX_PAYMENT",
+     "LOAN_REPAYMENT",
+     "CAPEX_ONE_OFF"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "is_large_one_off",
+    "type": "boolean",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "true iff category = CAPEX_ONE_OFF"
+   },
+   {
+    "name": "invoice_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "due_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= invoice_date + 1; business day"
+   },
+   {
+    "name": "payment_terms_days",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "days",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD",
+     "EUR",
+     "GBP",
+     "INR",
+     "SGD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "invoice_amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "> 0"
+   },
+   {
+    "name": "settled_amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived from ledger debits"
+   },
+   {
+    "name": "outstanding_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived"
+   },
+   {
+    "name": "last_payment_date",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "days_past_due_at_cutoff",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "days",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "OPEN",
+     "OVERDUE",
+     "PARTIALLY_PAID",
+     "PAID",
+     "CANCELLED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "terminal_date",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "status_as_of_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   }
+  ]
+ },
+ "cash_flow_forecast": {
+  "primary_key": [
+   "cf_id"
+  ],
+  "id_pattern": "^CF-2026-\\d{6}$",
+  "description": "Forecast item: one expected cash flow derived from exactly one receivable or payable.",
+  "cardinality": "1:1 receivable|payable; 1:N ledger_entry (settlements); N:M forecast_run via forecast_run_item",
+  "lifecycle": "SCHEDULED -> DELAYED|PARTIALLY_REALIZED|REALIZED|CANCELLED|WRITTEN_OFF ; DELAYED <-> PARTIALLY_REALIZED",
+  "unique_together": [],
+  "fields": [
+   {
+    "name": "cf_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": "CF-2026-######"
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": ""
+   },
+   {
+    "name": "account_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "bank_account.account_id",
+    "rule": ""
+   },
+   {
+    "name": "receivable_id",
+    "type": "string",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "receivable.receivable_id",
+    "rule": "exactly one of receivable_id/payable_id"
+   },
+   {
+    "name": "payable_id",
+    "type": "string",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "payable.payable_id",
+    "rule": "exactly one of receivable_id/payable_id"
+   },
+   {
+    "name": "direction",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "INFLOW",
+     "OUTFLOW"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "INFLOW iff receivable"
+   },
+   {
+    "name": "category",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "CUSTOMER_RECEIPT",
+     "SUPPLIER_PAYMENT",
+     "PAYROLL",
+     "TAX_PAYMENT",
+     "LOAN_REPAYMENT",
+     "CAPEX_ONE_OFF"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD",
+     "EUR",
+     "GBP",
+     "INR",
+     "SGD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= bank_account.currency"
+   },
+   {
+    "name": "scheduled_amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "> 0; = document invoice amount"
+   },
+   {
+    "name": "expected_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "original expected cash date (business day); immutable"
+   },
+   {
+    "name": "revised_expected_date",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "> expected_date; only with revised_at"
+   },
+   {
+    "name": "revised_at",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= created_date and < expected_date; date the revision became known"
+   },
+   {
+    "name": "created_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "date the item entered the forecast (= invoice_date)"
+   },
+   {
+    "name": "confidence_score",
+    "type": "decimal",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "0..1; derived from counterparty tier and revision"
+   },
+   {
+    "name": "is_large_one_off",
+    "type": "boolean",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "SCHEDULED",
+     "DELAYED",
+     "PARTIALLY_REALIZED",
+     "REALIZED",
+     "WRITTEN_OFF",
+     "CANCELLED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived from state_event chain"
+   },
+   {
+    "name": "realized_amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived = sum of linked ledger entries"
+   },
+   {
+    "name": "realized_date",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "date of last linked ledger entry"
+   },
+   {
+    "name": "terminal_date",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "date REALIZED/WRITTEN_OFF/CANCELLED reached"
+   }
+  ]
+ },
+ "currency_rate": {
+  "primary_key": [
+   "rate_id"
+  ],
+  "id_pattern": "^RATE-2026-\\d{6}$",
+  "description": "Daily FX rates (USD per 1 unit of currency). Missing rows are labelled anomalies.",
+  "cardinality": "referenced logically by currency+date from ledger/position/forecast conversions",
+  "lifecycle": "",
+  "unique_together": [
+   [
+    "from_currency",
+    "rate_date"
+   ]
+  ],
+  "fields": [
+   {
+    "name": "rate_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": "never renumbered when a row is removed"
+   },
+   {
+    "name": "rate_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "effective date of the rate"
+   },
+   {
+    "name": "from_currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD",
+     "EUR",
+     "GBP",
+     "INR",
+     "SGD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "to_currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "reporting currency"
+   },
+   {
+    "name": "rate",
+    "type": "decimal",
+    "required": true,
+    "allowed": [],
+    "unit": "USD per 1 unit",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "> 0; USD = 1"
+   },
+   {
+    "name": "rate_type",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "SPOT_CLOSE"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "source",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "SYNTHETIC_RANDOM_WALK"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   }
+  ]
+ },
+ "liquidity_scenario": {
+  "primary_key": [
+   "scenario_id"
+  ],
+  "id_pattern": "^SCN-[A-Z]+$",
+  "description": "Scenario definitions (documented assumptions).",
+  "cardinality": "1:N scenario_assumption; 1:N forecast_run",
+  "lifecycle": "",
+  "unique_together": [],
+  "fields": [
+   {
+    "name": "scenario_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "scenario_name",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "scenario_type",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "BASE",
+     "DELAYED_RECEIPT",
+     "STRESS"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "description",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "receipt_delay_days",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "days",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= 0; added to expected receipt dates"
+   },
+   {
+    "name": "payable_acceleration_days",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "days",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= 0; payments pulled forward"
+   },
+   {
+    "name": "receivable_haircut_pct",
+    "type": "decimal",
+    "required": true,
+    "allowed": [],
+    "unit": "fraction",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "0..1; credit-loss haircut on receipts"
+   },
+   {
+    "name": "one_off_outflow_multiplier",
+    "type": "decimal",
+    "required": true,
+    "allowed": [],
+    "unit": "x",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= 1"
+   },
+   {
+    "name": "fx_shock_pct",
+    "type": "decimal",
+    "required": true,
+    "allowed": [],
+    "unit": "fraction",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "applied to non-USD -> USD plan rate; negative = depreciation"
+   },
+   {
+    "name": "overdue_rollover_days",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "days",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "overdue items assumed to clear this many days after run date"
+   },
+   {
+    "name": "effective_from",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "effective_to",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "ACTIVE",
+     "RETIRED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "created_by_role",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "ACCOUNT_HOLDER",
+     "OPERATIONS_ANALYST",
+     "RISK_COMPLIANCE_REVIEWER",
+     "SYSTEM_ADMIN",
+     "SYSTEM"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   }
+  ]
+ },
+ "scenario_assumption": {
+  "primary_key": [
+   "assumption_id"
+  ],
+  "id_pattern": "^ASM-\\d{4}$",
+  "description": "One documented parameter per row; must equal liquidity_scenario columns.",
+  "cardinality": "N:1 liquidity_scenario",
+  "lifecycle": "",
+  "unique_together": [
+   [
+    "scenario_id",
+    "parameter_name"
+   ]
+  ],
+  "fields": [
+   {
+    "name": "assumption_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "scenario_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "liquidity_scenario.scenario_id",
+    "rule": ""
+   },
+   {
+    "name": "parameter_name",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "parameter_value",
+    "type": "decimal",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "unit",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "rationale",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   }
+  ]
+ },
+ "forecast_run": {
+  "primary_key": [
+   "run_id"
+  ],
+  "id_pattern": "^FCAST-2026-\\d{2}-\\d{2}-\\d{3}$",
+  "description": "A versioned execution of a scenario at a run date.",
+  "cardinality": "N:1 liquidity_scenario; N:M legal_entity via forecast_run_entity; N:M cash_flow_forecast via forecast_run_item; 1:N forecast_daily_position; 1:N forecast_vs_actual; self-reference supersedes (optional)",
+  "lifecycle": "CREATED -> CALCULATED -> APPROVED | EXCEPTIONS_FLAGGED -> APPROVED|REJECTED ; REJECTED|APPROVED -> SUPERSEDED",
+  "unique_together": [],
+  "fields": [
+   {
+    "name": "run_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": "FCAST-YYYY-MM-DD-### (run date, per-date sequence); immutable"
+   },
+   {
+    "name": "run_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "forecast as-of date (first day of horizon)"
+   },
+   {
+    "name": "data_cutoff_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= run_date - 1; no actual after this date may be used"
+   },
+   {
+    "name": "horizon_start",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= run_date"
+   },
+   {
+    "name": "horizon_end",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= run_date + 90"
+   },
+   {
+    "name": "scenario_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "liquidity_scenario.scenario_id",
+    "rule": ""
+   },
+   {
+    "name": "run_version",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ">= 1; incremented by re-runs"
+   },
+   {
+    "name": "supersedes_run_id",
+    "type": "string",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "forecast_run.run_id",
+    "rule": "earlier run of same date/scenario"
+   },
+   {
+    "name": "status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "CREATED",
+     "CALCULATED",
+     "EXCEPTIONS_FLAGGED",
+     "APPROVED",
+     "REJECTED",
+     "SUPERSEDED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "current state; history in state_event"
+   },
+   {
+    "name": "created_by_role",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "ACCOUNT_HOLDER",
+     "OPERATIONS_ANALYST",
+     "RISK_COMPLIANCE_REVIEWER",
+     "SYSTEM_ADMIN",
+     "SYSTEM"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "line_count",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived = rows in forecast_run_item"
+   },
+   {
+    "name": "entities_in_scope",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived from forecast_run_entity"
+   },
+   {
+    "name": "opening_position_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived: in-scope balances at cutoff x plan FX"
+   },
+   {
+    "name": "total_inflow_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived from lines"
+   },
+   {
+    "name": "total_outflow_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived from lines"
+   },
+   {
+    "name": "closing_position_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived: sum of entity projections at horizon end"
+   },
+   {
+    "name": "min_position_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "derived: min over horizon of group projection"
+   },
+   {
+    "name": "min_position_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "entities_breaching_buffer",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "entities projected below min_liquidity_buffer on any day"
+   },
+   {
+    "name": "breach_entity_days",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "entity-days below buffer"
+   },
+   {
+    "name": "fx_status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "OK",
+     "STALE_CARRY"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "STALE_CARRY if a plan rate was carried forward"
+   },
+   {
+    "name": "exception_count",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "run-level exceptions detected at calculation time"
+   },
+   {
+    "name": "review_decision",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "APPROVED",
+     "APPROVED_WITH_EXCEPTIONS",
+     "REJECTED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "reviewer decision according to documented rule"
+   },
+   {
+    "name": "input_checksum",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "sha256 of canonical line content (reproducibility)"
+   }
+  ]
+ },
+ "forecast_run_entity": {
+  "primary_key": [
+   "run_id",
+   "entity_id"
+  ],
+  "id_pattern": "^FCAST-2026-\\d{2}-\\d{2}-\\d{3}\\|ENT-\\d{6}$",
+  "description": "Bridge: entities in/out of scope per run (N:M).",
+  "cardinality": "bridge between forecast_run and legal_entity (N:M)",
+  "lifecycle": "",
+  "unique_together": [],
+  "fields": [
+   {
+    "name": "run_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "forecast_run.run_id",
+    "rule": ""
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": ""
+   },
+   {
+    "name": "included",
+    "type": "boolean",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "exclusion_reason",
+    "type": "string",
+    "required": false,
+    "allowed": [
+     "ENTITY_CLOSED",
+     "ENTITY_DORMANT"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "required iff included=false"
+   },
+   {
+    "name": "opening_position_usd_minor",
+    "type": "integer",
+    "required": false,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "required iff included"
+   }
+  ]
+ },
+ "forecast_run_item": {
+  "primary_key": [
+   "line_id"
+  ],
+  "id_pattern": "^RITEM-2026-\\d{7}$",
+  "description": "Bridge: snapshot of each forecast item as used by a run/scenario (N:M).",
+  "cardinality": "bridge forecast_run N:M cash_flow_forecast",
+  "lifecycle": "",
+  "unique_together": [
+   [
+    "run_id",
+    "cf_id"
+   ]
+  ],
+  "fields": [
+   {
+    "name": "line_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "run_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "forecast_run.run_id",
+    "rule": ""
+   },
+   {
+    "name": "cf_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "cash_flow_forecast.cf_id",
+    "rule": "(run_id, cf_id) must be unique (else DOUBLE_COUNT anomaly)"
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": "= cash_flow_forecast.entity_id"
+   },
+   {
+    "name": "base_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "expected date known at cutoff (revised if revised_at <= cutoff)"
+   },
+   {
+    "name": "effective_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "scenario-adjusted date; within [run_date, horizon_end]"
+   },
+   {
+    "name": "scheduled_amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "remaining amount at cutoff (scheduled - settled by cutoff)"
+   },
+   {
+    "name": "adjusted_amount_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "scenario-adjusted amount (haircut / one-off multiplier)"
+   },
+   {
+    "name": "currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD",
+     "EUR",
+     "GBP",
+     "INR",
+     "SGD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "direction",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "INFLOW",
+     "OUTFLOW"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "fx_rate_to_usd",
+    "type": "decimal",
+    "required": true,
+    "allowed": [],
+    "unit": "USD per 1 unit",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "plan rate at cutoff x (1+scenario fx shock)"
+   },
+   {
+    "name": "adjusted_amount_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "round(adjusted_amount x fx_rate_to_usd)"
+   },
+   {
+    "name": "amount_basis",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "SCHEDULED",
+     "ACTUAL"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "ACTUAL is only valid if actual ledger date <= data_cutoff_date"
+   },
+   {
+    "name": "actual_ledger_id",
+    "type": "string",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "ledger_entry.ledger_id",
+    "rule": "only when amount_basis=ACTUAL"
+   }
+  ]
+ },
+ "daily_cash_position": {
+  "primary_key": [
+   "position_id"
+  ],
+  "id_pattern": "^POS-2026-\\d{8}$",
+  "description": "Derived actual daily cash position per bank account.",
+  "cardinality": "N:1 bank_account",
+  "lifecycle": "",
+  "unique_together": [
+   [
+    "account_id",
+    "position_date"
+   ]
+  ],
+  "fields": [
+   {
+    "name": "position_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "account_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "bank_account.account_id",
+    "rule": ""
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": ""
+   },
+   {
+    "name": "position_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "calendar day, 2026-01-01 .. min(cutoff, closed_date)"
+   },
+   {
+    "name": "currency",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "USD",
+     "EUR",
+     "GBP",
+     "INR",
+     "SGD"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "opening_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= previous day's closing"
+   },
+   {
+    "name": "inflow_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "sum of credits"
+   },
+   {
+    "name": "outflow_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "sum of debits (positive)"
+   },
+   {
+    "name": "closing_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "minor units of the row's currency (1/100)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= opening + inflow - outflow"
+   },
+   {
+    "name": "entry_count",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "fx_rate_to_usd",
+    "type": "decimal",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "null when fx_status=MISSING"
+   },
+   {
+    "name": "fx_rate_date",
+    "type": "date",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "date of the rate used (carry-forward <= 3 days)"
+   },
+   {
+    "name": "fx_status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "OK",
+     "STALE_CARRY",
+     "MISSING"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "closing_usd_minor",
+    "type": "integer",
+    "required": false,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "round(closing x rate); null when MISSING"
+   },
+   {
+    "name": "is_overdrawn",
+    "type": "boolean",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "closing < 0"
+   }
+  ]
+ },
+ "forecast_daily_position": {
+  "primary_key": [
+   "fdp_id"
+  ],
+  "id_pattern": "^FDP-2026-\\d{8}$",
+  "description": "Projected daily position per run and in-scope entity (USD).",
+  "cardinality": "N:1 forecast_run; N:1 legal_entity",
+  "lifecycle": "",
+  "unique_together": [
+   [
+    "run_id",
+    "entity_id",
+    "position_date"
+   ]
+  ],
+  "fields": [
+   {
+    "name": "fdp_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "run_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "forecast_run.run_id",
+    "rule": ""
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": ""
+   },
+   {
+    "name": "position_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "run_date .. horizon_end"
+   },
+   {
+    "name": "projected_closing_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "sum_ccy plan_rate x (balance at cutoff + cumulative lines + run-rate)"
+   },
+   {
+    "name": "buffer_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= legal_entity.min_liquidity_buffer_usd_minor"
+   },
+   {
+    "name": "below_buffer",
+    "type": "boolean",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "projected < buffer"
+   },
+   {
+    "name": "shortfall_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "max(0, buffer - projected)"
+   }
+  ]
+ },
+ "forecast_vs_actual": {
+  "primary_key": [
+   "comparison_id"
+  ],
+  "id_pattern": "^CMP-2026-\\d{7}$",
+  "description": "Actual-versus-forecast variance with additive driver decomposition.",
+  "cardinality": "N:1 forecast_run; N:1 legal_entity",
+  "lifecycle": "",
+  "unique_together": [
+   [
+    "run_id",
+    "entity_id",
+    "comparison_date"
+   ]
+  ],
+  "fields": [
+   {
+    "name": "comparison_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "run_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "forecast_run.run_id",
+    "rule": ""
+   },
+   {
+    "name": "entity_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "legal_entity.entity_id",
+    "rule": ""
+   },
+   {
+    "name": "comparison_date",
+    "type": "date",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "weekly checkpoint <= data cutoff"
+   },
+   {
+    "name": "horizon_day",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "days",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "comparison_date - data_cutoff_date"
+   },
+   {
+    "name": "forecast_closing_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "= forecast_daily_position value"
+   },
+   {
+    "name": "actual_closing_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "actual ledger balances x actual FX of the day"
+   },
+   {
+    "name": "variance_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "actual - forecast"
+   },
+   {
+    "name": "variance_pct",
+    "type": "decimal",
+    "required": false,
+    "allowed": [],
+    "unit": "fraction",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "variance / |forecast|; null if forecast = 0"
+   },
+   {
+    "name": "timing_effect_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "items settled earlier/later than scheduled"
+   },
+   {
+    "name": "amount_effect_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "settled amount differs from scheduled (partial pay, haircut)"
+   },
+   {
+    "name": "unscheduled_flow_effect_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "actual unscheduled flows minus run-rate"
+   },
+   {
+    "name": "fx_effect_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "actual FX vs plan FX on actual balances"
+   },
+   {
+    "name": "double_count_effect_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "duplicated forecast lines"
+   },
+   {
+    "name": "rounding_residual_usd_minor",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "USD minor units (cents)",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "variance - sum(effects); |.| <= 5"
+   },
+   {
+    "name": "primary_driver",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "TIMING",
+     "AMOUNT",
+     "UNSCHEDULED_FLOWS",
+     "FX",
+     "DOUBLE_COUNT",
+     "NONE"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "effect with the largest absolute value"
+   },
+   {
+    "name": "explanation_status",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "EXPLAINED",
+     "UNEXPLAINED"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "EXPLAINED iff |residual| <= tolerance"
+   }
+  ]
+ },
+ "state_event": {
+  "primary_key": [
+   "event_id"
+  ],
+  "id_pattern": "^EVT-2026-\\d{8}$",
+  "description": "Append-only lifecycle history for all stateful objects (no overwrites).",
+  "cardinality": "N:1 any lifecycle object",
+  "lifecycle": "",
+  "unique_together": [
+   [
+    "object_type",
+    "object_id",
+    "sequence_no"
+   ]
+  ],
+  "fields": [
+   {
+    "name": "event_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": true,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "object_type",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "LEGAL_ENTITY",
+     "BANK_ACCOUNT",
+     "RECEIVABLE",
+     "PAYABLE",
+     "CASH_FLOW_FORECAST",
+     "FORECAST_RUN"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "object_id",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "id of the object in its own table (polymorphic; validated in code)"
+   },
+   {
+    "name": "sequence_no",
+    "type": "integer",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "1..n per object, contiguous"
+   },
+   {
+    "name": "from_state",
+    "type": "string",
+    "required": false,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "NULL for creation event; must equal previous to_state"
+   },
+   {
+    "name": "to_state",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "event_ts",
+    "type": "datetime",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": "non-decreasing per object"
+   },
+   {
+    "name": "actor_role",
+    "type": "string",
+    "required": true,
+    "allowed": [
+     "ACCOUNT_HOLDER",
+     "OPERATIONS_ANALYST",
+     "RISK_COMPLIANCE_REVIEWER",
+     "SYSTEM_ADMIN",
+     "SYSTEM"
+    ],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   },
+   {
+    "name": "reason_code",
+    "type": "string",
+    "required": true,
+    "allowed": [],
+    "unit": "",
+    "unique": false,
+    "foreign_key": "",
+    "rule": ""
+   }
+  ]
+ }
+}

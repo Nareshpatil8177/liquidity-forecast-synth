@@ -1,0 +1,33 @@
+run_id,expected_review_decision,reason
+FCAST-2026-01-01-001,APPROVED,no labelled anomaly affects this run
+FCAST-2026-01-01-002,APPROVED,no labelled anomaly affects this run
+FCAST-2026-01-01-003,APPROVED,no labelled anomaly affects this run
+FCAST-2026-02-01-001,APPROVED,no labelled anomaly affects this run
+FCAST-2026-02-01-002,APPROVED,no labelled anomaly affects this run
+FCAST-2026-02-01-003,APPROVED,no labelled anomaly affects this run
+FCAST-2026-03-01-001,APPROVED,no labelled anomaly affects this run
+FCAST-2026-03-01-002,APPROVED,no labelled anomaly affects this run
+FCAST-2026-03-01-003,APPROVED,no labelled anomaly affects this run
+FCAST-2026-04-01-001,REJECTED,labelled double count / look-ahead lines present
+FCAST-2026-04-01-002,APPROVED,no labelled anomaly affects this run
+FCAST-2026-04-01-003,APPROVED,no labelled anomaly affects this run
+FCAST-2026-04-01-004,APPROVED,no labelled anomaly affects this run
+FCAST-2026-05-01-001,APPROVED_WITH_EXCEPTIONS,FX rate missing on cutoff day for INR
+FCAST-2026-05-01-002,APPROVED_WITH_EXCEPTIONS,FX rate missing on cutoff day for INR
+FCAST-2026-05-01-003,APPROVED_WITH_EXCEPTIONS,FX rate missing on cutoff day for INR
+FCAST-2026-06-01-001,APPROVED,no labelled anomaly affects this run
+FCAST-2026-06-01-002,REJECTED,labelled double count / look-ahead lines present
+FCAST-2026-06-01-003,APPROVED,no labelled anomaly affects this run
+FCAST-2026-06-01-004,APPROVED,no labelled anomaly affects this run
+FCAST-2026-07-01-001,APPROVED,no labelled anomaly affects this run
+FCAST-2026-07-01-002,APPROVED,no labelled anomaly affects this run
+FCAST-2026-07-01-003,APPROVED,no labelled anomaly affects this run
+FCAST-2026-08-01-001,APPROVED,no labelled anomaly affects this run
+FCAST-2026-08-01-002,APPROVED,no labelled anomaly affects this run
+FCAST-2026-08-01-003,APPROVED,no labelled anomaly affects this run
+FCAST-2026-09-01-001,APPROVED,no labelled anomaly affects this run
+FCAST-2026-09-01-002,APPROVED,no labelled anomaly affects this run
+FCAST-2026-09-01-003,APPROVED,no labelled anomaly affects this run
+FCAST-2026-10-01-001,APPROVED,no labelled anomaly affects this run
+FCAST-2026-10-01-002,APPROVED,no labelled anomaly affects this run
+FCAST-2026-10-01-003,APPROVED,no labelled anomaly affects this run

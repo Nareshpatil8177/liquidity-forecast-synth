@@ -1,0 +1,146 @@
+[
+{
+"assumption_id": "ASM-0001",
+"scenario_id": "SCN-BASE",
+"parameter_name": "receipt_delay_days",
+"parameter_value": "0.0000",
+"unit": "days",
+"rationale": "customer payment delay assumption"
+},
+{
+"assumption_id": "ASM-0002",
+"scenario_id": "SCN-BASE",
+"parameter_name": "payable_acceleration_days",
+"parameter_value": "0.0000",
+"unit": "days",
+"rationale": "supplier early-payment pressure"
+},
+{
+"assumption_id": "ASM-0003",
+"scenario_id": "SCN-BASE",
+"parameter_name": "receivable_haircut_pct",
+"parameter_value": "0.0000",
+"unit": "fraction",
+"rationale": "expected credit loss on receipts"
+},
+{
+"assumption_id": "ASM-0004",
+"scenario_id": "SCN-BASE",
+"parameter_name": "one_off_outflow_multiplier",
+"parameter_value": "1.0000",
+"unit": "x",
+"rationale": "cost overrun on large one-off payments"
+},
+{
+"assumption_id": "ASM-0005",
+"scenario_id": "SCN-BASE",
+"parameter_name": "fx_shock_pct",
+"parameter_value": "0.0000",
+"unit": "fraction",
+"rationale": "non-USD depreciation vs USD at plan rate"
+},
+{
+"assumption_id": "ASM-0006",
+"scenario_id": "SCN-BASE",
+"parameter_name": "overdue_rollover_days",
+"parameter_value": "3.0000",
+"unit": "days",
+"rationale": "days after run date at which overdue items clear"
+},
+{
+"assumption_id": "ASM-0007",
+"scenario_id": "SCN-DELAYED",
+"parameter_name": "receipt_delay_days",
+"parameter_value": "10.0000",
+"unit": "days",
+"rationale": "customer payment delay assumption"
+},
+{
+"assumption_id": "ASM-0008",
+"scenario_id": "SCN-DELAYED",
+"parameter_name": "payable_acceleration_days",
+"parameter_value": "0.0000",
+"unit": "days",
+"rationale": "supplier early-payment pressure"
+},
+{
+"assumption_id": "ASM-0009",
+"scenario_id": "SCN-DELAYED",
+"parameter_name": "receivable_haircut_pct",
+"parameter_value": "0.0000",
+"unit": "fraction",
+"rationale": "expected credit loss on receipts"
+},
+{
+"assumption_id": "ASM-0010",
+"scenario_id": "SCN-DELAYED",
+"parameter_name": "one_off_outflow_multiplier",
+"parameter_value": "1.0000",
+"unit": "x",
+"rationale": "cost overrun on large one-off payments"
+},
+{
+"assumption_id": "ASM-0011",
+"scenario_id": "SCN-DELAYED",
+"parameter_name": "fx_shock_pct",
+"parameter_value": "0.0000",
+"unit": "fraction",
+"rationale": "non-USD depreciation vs USD at plan rate"
+},
+{
+"assumption_id": "ASM-0012",
+"scenario_id": "SCN-DELAYED",
+"parameter_name": "overdue_rollover_days",
+"parameter_value": "7.0000",
+"unit": "days",
+"rationale": "days after run date at which overdue items clear"
+},
+{
+"assumption_id": "ASM-0013",
+"scenario_id": "SCN-STRESS",
+"parameter_name": "receipt_delay_days",
+"parameter_value": "21.0000",
+"unit": "days",
+"rationale": "customer payment delay assumption"
+},
+{
+"assumption_id": "ASM-0014",
+"scenario_id": "SCN-STRESS",
+"parameter_name": "payable_acceleration_days",
+"parameter_value": "5.0000",
+"unit": "days",
+"rationale": "supplier early-payment pressure"
+},
+{
+"assumption_id": "ASM-0015",
+"scenario_id": "SCN-STRESS",
+"parameter_name": "receivable_haircut_pct",
+"parameter_value": "0.1000",
+"unit": "fraction",
+"rationale": "expected credit loss on receipts"
+},
+{
+"assumption_id": "ASM-0016",
+"scenario_id": "SCN-STRESS",
+"parameter_name": "one_off_outflow_multiplier",
+"parameter_value": "1.2500",
+"unit": "x",
+"rationale": "cost overrun on large one-off payments"
+},
+{
+"assumption_id": "ASM-0017",
+"scenario_id": "SCN-STRESS",
+"parameter_name": "fx_shock_pct",
+"parameter_value": "-0.0800",
+"unit": "fraction",
+"rationale": "non-USD depreciation vs USD at plan rate"
+},
+{
+"assumption_id": "ASM-0018",
+"scenario_id": "SCN-STRESS",
+"parameter_name": "overdue_rollover_days",
+"parameter_value": "14.0000",
+"unit": "days",
+"rationale": "days after run date at which overdue items clear"
+}
+]

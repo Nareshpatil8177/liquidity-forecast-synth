@@ -1,0 +1,4 @@
+scenario_id,scenario_name,scenario_type,description,receipt_delay_days,payable_acceleration_days,receivable_haircut_pct,one_off_outflow_multiplier,fx_shock_pct,overdue_rollover_days,effective_from,effective_to,status,created_by_role
+SCN-BASE,Base case,BASE,Contractual/expected dates and amounts; overdue items assumed to clear 3 days after run date.,0,0,0.0000,1.0000,0.0000,3,2026-01-01,,ACTIVE,SYSTEM_ADMIN
+SCN-DELAYED,Delayed receipts,DELAYED_RECEIPT,Customers pay 10 days later than expected; overdue items clear after 7 days.,10,0,0.0000,1.0000,0.0000,7,2026-01-01,,ACTIVE,SYSTEM_ADMIN
+SCN-STRESS,Liquidity stress,STRESS,"Receipts 21 days late with 10% credit-loss haircut, suppliers paid 5 days early, one-off payments +25%, non-USD currencies -8% vs USD, overdue items clear after 14 days.",21,5,0.1000,1.2500,-0.0800,14,2026-01-01,,ACTIVE,SYSTEM_ADMIN

@@ -1,0 +1,1346 @@
+[
+{
+"run_id": "FCAST-2026-01-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 361590963
+},
+{
+"run_id": "FCAST-2026-01-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 128894979
+},
+{
+"run_id": "FCAST-2026-01-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 610902791
+},
+{
+"run_id": "FCAST-2026-01-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 652673145
+},
+{
+"run_id": "FCAST-2026-01-01-001",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 62105085
+},
+{
+"run_id": "FCAST-2026-01-01-001",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 148443787
+},
+{
+"run_id": "FCAST-2026-01-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 361590963
+},
+{
+"run_id": "FCAST-2026-01-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 128894979
+},
+{
+"run_id": "FCAST-2026-01-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 610902791
+},
+{
+"run_id": "FCAST-2026-01-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 652673145
+},
+{
+"run_id": "FCAST-2026-01-01-002",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 62105085
+},
+{
+"run_id": "FCAST-2026-01-01-002",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 148443787
+},
+{
+"run_id": "FCAST-2026-01-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 360775994
+},
+{
+"run_id": "FCAST-2026-01-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 118589621
+},
+{
+"run_id": "FCAST-2026-01-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 562076100
+},
+{
+"run_id": "FCAST-2026-01-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 600533646
+},
+{
+"run_id": "FCAST-2026-01-01-003",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 57829197
+},
+{
+"run_id": "FCAST-2026-01-01-003",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 147147040
+},
+{
+"run_id": "FCAST-2026-02-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 331054834
+},
+{
+"run_id": "FCAST-2026-02-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 150205676
+},
+{
+"run_id": "FCAST-2026-02-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 604641236
+},
+{
+"run_id": "FCAST-2026-02-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 655754887
+},
+{
+"run_id": "FCAST-2026-02-01-001",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 44900855
+},
+{
+"run_id": "FCAST-2026-02-01-001",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 125004315
+},
+{
+"run_id": "FCAST-2026-02-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 331054834
+},
+{
+"run_id": "FCAST-2026-02-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 150205676
+},
+{
+"run_id": "FCAST-2026-02-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 604641236
+},
+{
+"run_id": "FCAST-2026-02-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 655754887
+},
+{
+"run_id": "FCAST-2026-02-01-002",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 44900855
+},
+{
+"run_id": "FCAST-2026-02-01-002",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 125004315
+},
+{
+"run_id": "FCAST-2026-02-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 330551477
+},
+{
+"run_id": "FCAST-2026-02-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 138218805
+},
+{
+"run_id": "FCAST-2026-02-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 556316066
+},
+{
+"run_id": "FCAST-2026-02-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 604500589
+},
+{
+"run_id": "FCAST-2026-02-01-003",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 41742744
+},
+{
+"run_id": "FCAST-2026-02-01-003",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 124507657
+},
+{
+"run_id": "FCAST-2026-03-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 376533687
+},
+{
+"run_id": "FCAST-2026-03-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 143562044
+},
+{
+"run_id": "FCAST-2026-03-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 632479233
+},
+{
+"run_id": "FCAST-2026-03-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 582470365
+},
+{
+"run_id": "FCAST-2026-03-01-001",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 31289473
+},
+{
+"run_id": "FCAST-2026-03-01-001",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 125896749
+},
+{
+"run_id": "FCAST-2026-03-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 376533687
+},
+{
+"run_id": "FCAST-2026-03-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 143562044
+},
+{
+"run_id": "FCAST-2026-03-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 632479233
+},
+{
+"run_id": "FCAST-2026-03-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 582470365
+},
+{
+"run_id": "FCAST-2026-03-01-002",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 31289473
+},
+{
+"run_id": "FCAST-2026-03-01-002",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 125896749
+},
+{
+"run_id": "FCAST-2026-03-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 375956580
+},
+{
+"run_id": "FCAST-2026-03-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 132124226
+},
+{
+"run_id": "FCAST-2026-03-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 581959769
+},
+{
+"run_id": "FCAST-2026-03-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 537156867
+},
+{
+"run_id": "FCAST-2026-03-01-003",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 29145668
+},
+{
+"run_id": "FCAST-2026-03-01-003",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 125365640
+},
+{
+"run_id": "FCAST-2026-04-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 410442160
+},
+{
+"run_id": "FCAST-2026-04-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 141924543
+},
+{
+"run_id": "FCAST-2026-04-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 593204466
+},
+{
+"run_id": "FCAST-2026-04-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 555705404
+},
+{
+"run_id": "FCAST-2026-04-01-001",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 35083605
+},
+{
+"run_id": "FCAST-2026-04-01-001",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 133909065
+},
+{
+"run_id": "FCAST-2026-04-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 410442160
+},
+{
+"run_id": "FCAST-2026-04-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 141924543
+},
+{
+"run_id": "FCAST-2026-04-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 593204466
+},
+{
+"run_id": "FCAST-2026-04-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 555705404
+},
+{
+"run_id": "FCAST-2026-04-01-002",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 35083605
+},
+{
+"run_id": "FCAST-2026-04-01-002",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 133909065
+},
+{
+"run_id": "FCAST-2026-04-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 409163355
+},
+{
+"run_id": "FCAST-2026-04-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 130628656
+},
+{
+"run_id": "FCAST-2026-04-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 545809649
+},
+{
+"run_id": "FCAST-2026-04-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 513053544
+},
+{
+"run_id": "FCAST-2026-04-01-003",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 32742083
+},
+{
+"run_id": "FCAST-2026-04-01-003",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 133008030
+},
+{
+"run_id": "FCAST-2026-04-01-004",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 410442160
+},
+{
+"run_id": "FCAST-2026-04-01-004",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 141924543
+},
+{
+"run_id": "FCAST-2026-04-01-004",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 593204466
+},
+{
+"run_id": "FCAST-2026-04-01-004",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 555705404
+},
+{
+"run_id": "FCAST-2026-04-01-004",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 35083605
+},
+{
+"run_id": "FCAST-2026-04-01-004",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 133909065
+},
+{
+"run_id": "FCAST-2026-05-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 444389744
+},
+{
+"run_id": "FCAST-2026-05-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 159360116
+},
+{
+"run_id": "FCAST-2026-05-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 607701454
+},
+{
+"run_id": "FCAST-2026-05-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 564972057
+},
+{
+"run_id": "FCAST-2026-05-01-001",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 43630186
+},
+{
+"run_id": "FCAST-2026-05-01-001",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 126490961
+},
+{
+"run_id": "FCAST-2026-05-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 444389744
+},
+{
+"run_id": "FCAST-2026-05-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 159360116
+},
+{
+"run_id": "FCAST-2026-05-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 607701454
+},
+{
+"run_id": "FCAST-2026-05-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 564972057
+},
+{
+"run_id": "FCAST-2026-05-01-002",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 43630186
+},
+{
+"run_id": "FCAST-2026-05-01-002",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 126490961
+},
+{
+"run_id": "FCAST-2026-05-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 440381214
+},
+{
+"run_id": "FCAST-2026-05-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 146714121
+},
+{
+"run_id": "FCAST-2026-05-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 559194125
+},
+{
+"run_id": "FCAST-2026-05-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 522824781
+},
+{
+"run_id": "FCAST-2026-05-01-003",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 40597172
+},
+{
+"run_id": "FCAST-2026-05-01-003",
+"entity_id": "ENT-000006",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 125582346
+},
+{
+"run_id": "FCAST-2026-06-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 314188928
+},
+{
+"run_id": "FCAST-2026-06-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 191317568
+},
+{
+"run_id": "FCAST-2026-06-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 550539934
+},
+{
+"run_id": "FCAST-2026-06-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 589248062
+},
+{
+"run_id": "FCAST-2026-06-01-001",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 62336117
+},
+{
+"run_id": "FCAST-2026-06-01-001",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-06-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 314188928
+},
+{
+"run_id": "FCAST-2026-06-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 191317568
+},
+{
+"run_id": "FCAST-2026-06-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 550539934
+},
+{
+"run_id": "FCAST-2026-06-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 589248062
+},
+{
+"run_id": "FCAST-2026-06-01-002",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 62336117
+},
+{
+"run_id": "FCAST-2026-06-01-002",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-06-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 309664812
+},
+{
+"run_id": "FCAST-2026-06-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 176161449
+},
+{
+"run_id": "FCAST-2026-06-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 506720697
+},
+{
+"run_id": "FCAST-2026-06-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 543875899
+},
+{
+"run_id": "FCAST-2026-06-01-003",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 57839773
+},
+{
+"run_id": "FCAST-2026-06-01-003",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-06-01-004",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 314188928
+},
+{
+"run_id": "FCAST-2026-06-01-004",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 191317568
+},
+{
+"run_id": "FCAST-2026-06-01-004",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 550539934
+},
+{
+"run_id": "FCAST-2026-06-01-004",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 589248062
+},
+{
+"run_id": "FCAST-2026-06-01-004",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 62336117
+},
+{
+"run_id": "FCAST-2026-06-01-004",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-07-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 328983713
+},
+{
+"run_id": "FCAST-2026-07-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 201179415
+},
+{
+"run_id": "FCAST-2026-07-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 494652861
+},
+{
+"run_id": "FCAST-2026-07-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 573103520
+},
+{
+"run_id": "FCAST-2026-07-01-001",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 81978102
+},
+{
+"run_id": "FCAST-2026-07-01-001",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-07-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 328983713
+},
+{
+"run_id": "FCAST-2026-07-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 201179415
+},
+{
+"run_id": "FCAST-2026-07-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 494652861
+},
+{
+"run_id": "FCAST-2026-07-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 573103520
+},
+{
+"run_id": "FCAST-2026-07-01-002",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 81978102
+},
+{
+"run_id": "FCAST-2026-07-01-002",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-07-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 324219032
+},
+{
+"run_id": "FCAST-2026-07-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 185242933
+},
+{
+"run_id": "FCAST-2026-07-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 455481086
+},
+{
+"run_id": "FCAST-2026-07-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 529611199
+},
+{
+"run_id": "FCAST-2026-07-01-003",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 75992171
+},
+{
+"run_id": "FCAST-2026-07-01-003",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-08-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 320932470
+},
+{
+"run_id": "FCAST-2026-08-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 188751793
+},
+{
+"run_id": "FCAST-2026-08-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 485613772
+},
+{
+"run_id": "FCAST-2026-08-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 641390666
+},
+{
+"run_id": "FCAST-2026-08-01-001",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 82834953
+},
+{
+"run_id": "FCAST-2026-08-01-001",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-08-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 320932470
+},
+{
+"run_id": "FCAST-2026-08-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 188751793
+},
+{
+"run_id": "FCAST-2026-08-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 485613772
+},
+{
+"run_id": "FCAST-2026-08-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 641390666
+},
+{
+"run_id": "FCAST-2026-08-01-002",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 82834953
+},
+{
+"run_id": "FCAST-2026-08-01-002",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-08-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 315903666
+},
+{
+"run_id": "FCAST-2026-08-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 173805635
+},
+{
+"run_id": "FCAST-2026-08-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 447203624
+},
+{
+"run_id": "FCAST-2026-08-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 594311137
+},
+{
+"run_id": "FCAST-2026-08-01-003",
+"entity_id": "ENT-000005",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 76643178
+},
+{
+"run_id": "FCAST-2026-08-01-003",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-09-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 296751688
+},
+{
+"run_id": "FCAST-2026-09-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 179962970
+},
+{
+"run_id": "FCAST-2026-09-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 516831656
+},
+{
+"run_id": "FCAST-2026-09-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 609379666
+},
+{
+"run_id": "FCAST-2026-09-01-001",
+"entity_id": "ENT-000005",
+"included": false,
+"exclusion_reason": "ENTITY_DORMANT",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-09-01-001",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-09-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 296751688
+},
+{
+"run_id": "FCAST-2026-09-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 179962970
+},
+{
+"run_id": "FCAST-2026-09-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 516831656
+},
+{
+"run_id": "FCAST-2026-09-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 609379666
+},
+{
+"run_id": "FCAST-2026-09-01-002",
+"entity_id": "ENT-000005",
+"included": false,
+"exclusion_reason": "ENTITY_DORMANT",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-09-01-002",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-09-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 292495556
+},
+{
+"run_id": "FCAST-2026-09-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 165753210
+},
+{
+"run_id": "FCAST-2026-09-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 475942150
+},
+{
+"run_id": "FCAST-2026-09-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 564703776
+},
+{
+"run_id": "FCAST-2026-09-01-003",
+"entity_id": "ENT-000005",
+"included": false,
+"exclusion_reason": "ENTITY_DORMANT",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-09-01-003",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-10-01-001",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 337795525
+},
+{
+"run_id": "FCAST-2026-10-01-001",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 185878459
+},
+{
+"run_id": "FCAST-2026-10-01-001",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 511412679
+},
+{
+"run_id": "FCAST-2026-10-01-001",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 664786603
+},
+{
+"run_id": "FCAST-2026-10-01-001",
+"entity_id": "ENT-000005",
+"included": false,
+"exclusion_reason": "ENTITY_DORMANT",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-10-01-001",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-10-01-002",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 337795525
+},
+{
+"run_id": "FCAST-2026-10-01-002",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 185878459
+},
+{
+"run_id": "FCAST-2026-10-01-002",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 511412679
+},
+{
+"run_id": "FCAST-2026-10-01-002",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 664786603
+},
+{
+"run_id": "FCAST-2026-10-01-002",
+"entity_id": "ENT-000005",
+"included": false,
+"exclusion_reason": "ENTITY_DORMANT",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-10-01-002",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-10-01-003",
+"entity_id": "ENT-000001",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 330481921
+},
+{
+"run_id": "FCAST-2026-10-01-003",
+"entity_id": "ENT-000002",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 171258416
+},
+{
+"run_id": "FCAST-2026-10-01-003",
+"entity_id": "ENT-000003",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 471176029
+},
+{
+"run_id": "FCAST-2026-10-01-003",
+"entity_id": "ENT-000004",
+"included": true,
+"exclusion_reason": null,
+"opening_position_usd_minor": 618630325
+},
+{
+"run_id": "FCAST-2026-10-01-003",
+"entity_id": "ENT-000005",
+"included": false,
+"exclusion_reason": "ENTITY_DORMANT",
+"opening_position_usd_minor": null
+},
+{
+"run_id": "FCAST-2026-10-01-003",
+"entity_id": "ENT-000006",
+"included": false,
+"exclusion_reason": "ENTITY_CLOSED",
+"opening_position_usd_minor": null
+}
+]

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.vscode/
+*.db
+# The full dataset (~60 MB) is reproducible in ~20 s with:  python -m liquidity generate --scale full ...
+# Remove the next line if you also want to commit it.
+data/full/

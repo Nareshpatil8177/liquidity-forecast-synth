@@ -1,0 +1,27 @@
+{
+ "seed": 20261022,
+ "scale": "starter",
+ "runs": 2,
+ "row_counts_identical": true,
+ "all_file_checksums_identical": true,
+ "files_compared": 43,
+ "row_counts": {
+  "legal_entity": 6,
+  "bank_account": 30,
+  "currency_rate": 1367,
+  "liquidity_scenario": 3,
+  "scenario_assumption": 18,
+  "receivable": 500,
+  "payable": 500,
+  "cash_flow_forecast": 1000,
+  "ledger_entry": 5000,
+  "state_event": 4823,
+  "forecast_run": 32,
+  "forecast_run_entity": 192,
+  "forecast_run_item": 4268,
+  "forecast_daily_position": 15470,
+  "forecast_vs_actual": 1871,
+  "daily_cash_position": 7570
+ },
+ "combined_sha256": "9b796ab7ec02f6a55972618f912872bb7d40c5d90a78d9628b53cd8caa886367"
+}
